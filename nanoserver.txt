@@ -1,0 +1,22 @@
+Process to create a Nano Server vhdx file and to run a VM.
+----------------------------------------------------------
+
+1.	Create a folder named C:\Wednesday
+
+2.	Copy the contents of the NanoServer folder to the C:\Wednesday.
+
+	Note:  We first need to 7zip (extract) the Server2016.iso to
+		a folder. That way, we'll get the NanoServer folder.
+
+
+3.	Using PowerShell:
+
+	cd c:\Wednesday\nanoserverimagegenerator
+
+	import-module .\nanoserverimagegenerator -verbose
+
+	set-executionpolicy remotesigned
+
+	new-nanoserverimage  -edition standard -deploymenttype guest -mediapath c:\ -targetpath c:\Wednesday\nano2018.vhdx -computername nano2018
+
+4.	Use Hyper-V to create a new VM named Nano2018 using the VHDX file.
